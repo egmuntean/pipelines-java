@@ -33,7 +33,7 @@ stages:
   jobs:
   - deployment: dev_database
     pool: ubuntu-latest
-    environment: 'dev-database'
+    # environment: 'dev-database'
     strategy:
       runOnce:
         deploy:
