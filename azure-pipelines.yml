@@ -20,3 +20,17 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/target'
+    ArtifactName: 'drop'
+    publishLocation: Container
+    
+- task: Bash@3
+  inputs:
+    targetType: inline
+    script: |
+      cd '$(Build.SourcesDirectory)/target'
+      java -jar ./lib/liquidbase-core-3.3.0.jar
+
