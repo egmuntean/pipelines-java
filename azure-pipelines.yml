@@ -29,52 +29,26 @@ stages:
         PathtoPublish: '$(Build.SourcesDirectory)/target'
         ArtifactName: 'drop'
         publishLocation: 'Container'
-- stage: Dev_Release
-  jobs:
-  - deployment: dev_database
-    pool: ubuntu-latest
-    # environment: 'dev-database'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: DownloadBuildArtifacts@0
-            inputs:
-              buildType: 'current'
-              downloadType: 'single'
-              artifactName: drop
-              itemPattern: '**/*.zip'
-              downloadPath: '$(System.ArtifactsDirectory)'
-          - task: Bash@3
-            inputs:
-              targetType: 'inline'
-              script: |
-                cd $(System.ArtifactsDirectory)
-                unzip ./drop/liquibase-demo.zip -d liquibase-demo
-                cd ./liquibase-demo
-                java -jar ./lib/liquibase-core-3.3.0.jar --defaultsFile=./src/main/resources/liquibase.properties update
-#- stage: QA_Release
-#  jobs:
-#  - deployment: qa_database
-#    pool: 'Hosted Ubuntu 1604'
-#    environment: 'qa-database'
-#    strategy:
-#      runOnce:
-#        deploy:
-#          steps:
-#          - task: DownloadBuildArtifacts@0
-#            inputs:
-#              buildType: 'current'
-#              downloadType: 'single'
-#              artifactName: drop
-#              itemPattern: '**/*.zip'
-#              downloadPath: '$(System.ArtifactsDirectory)'
-#          - task: Bash@3
-#            inputs:
-#              targetType: 'inline'
-#              script: |
-#                cd $(System.ArtifactsDirectory)
-#                unzip ./drop/liquibase-demo.zip -d liquibase-demo
-#                cd ./drop/liquibase-demo
-#                java -jar ./lib/liquibase-core-3.3.0.jar --defaultsFile=./src/main/resources/liquibase.qa.properties update
 
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    pool:
+      name: ubuntu-latest
+    steps:
+  
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        buildType: current
+        downloadType: single
+        downloadPath: '$(System.ArtifactsDirectory)'
+        artifactName: 'drop'
+        
+    - task: Bash@3
+      inputs:
+       targetType: inline
+       script: |
+         cd $(System.ArtifactoryDirectory)
+         unzip ./drop/liquidbase-demo.zip -d liquidbase-demo
+         cd ./liquidbase-demo
+         java -jar ./lib/liquidbase-core-3.3.0.jar -defaultsFile=./src/main/resources/liquidbase.properties update
