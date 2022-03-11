@@ -10,7 +10,8 @@ stages:
 - stage: Build
   jobs:
   - job: Build
-    pool: ubuntu-latest
+    pool: 
+     name: ubuntu
     continueOnError: false
     steps:
     - task: Maven@3
@@ -34,7 +35,7 @@ stages:
   jobs:
   - job: Deploy
     pool:
-      name: ubuntu-latest
+      name: ubuntu
     steps:
   
     - task: DownloadBuildArtifacts@0
