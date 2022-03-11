@@ -54,5 +54,5 @@ stages:
          ls -la
          unzip ./drop/liquidbase-demo.zip -d liquidbase-demo
          cd ./liquidbase-demo
-         ls -la
+         ls -la ./lib
          java -jar ./lib/liquidbase-core-3.3.0.jar -defaultsFile=./src/main/resources/liquidbase.properties update
