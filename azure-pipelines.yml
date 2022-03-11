@@ -52,6 +52,6 @@ stages:
          cd $(System.ArtifactsDirectory)
          pwd
          ls -la
-         unzip ./drop/helloworld.zip -d liquidbase-demo
-         cd ./helloworld
+         unzip ./drop/liquidbase-demo.zip -d liquidbase-demo
+         cd ./liquidbase-demo
          java -jar ./lib/liquidbase-core-3.3.0.jar -defaultsFile=./src/main/resources/liquidbase.properties update
