@@ -57,4 +57,4 @@ stages:
          sudo chmod -R 755 ./liquidbase-demo 
          cd ./liquidbase-demo
          ls -la ./lib
-         java -jar "/home/vsts/work/1/a/liquidbase-demo/lib/liquidbase-core-4.8.0.jar" -defaultsFile=./src/main/resources/liquidbase.properties update
+         sudo java -jar "/home/vsts/work/1/a/liquidbase-demo/lib/liquidbase-core-4.8.0.jar" -defaultsFile=./src/main/resources/liquidbase.properties update
