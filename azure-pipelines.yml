@@ -55,4 +55,4 @@ stages:
          unzip ./drop/liquidbase-demo.zip -d liquidbase-demo
          cd ./liquidbase-demo
          ls -la ./lib
-         java -jar ./lib/liquidbase-core-3.3.0.jar -defaultsFile=./src/main/resources/liquidbase.properties update
+         java -jar ./lib/liquidbase-core-4.8.0.jar -defaultsFile=./src/main/resources/liquidbase.properties update
